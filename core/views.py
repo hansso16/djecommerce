@@ -15,8 +15,10 @@ from .forms import CheckoutForm, CouponForm,RefundForm, PaymentForm
 import random
 import string
 import stripe
+from django.conf import settings
 # stripe.api_key = settings.STRIPE_SECRET_KEY
-stripe.api_key = 'sk_test_51HjHazBfXNIOP49rsufXvew6QRQTzWgP2lB7clu9PDQXaSPdDs5NP4ioKKlaKR9VRK4eR2ZY9qjhwit60GMmtfzh00IIPyhOyY'
+stripe.api_key = settings.STRIPE_SECRET_KEY
+STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
 
 
 # Create your views here.
@@ -184,9 +186,9 @@ class PaymentView(View):
         if order.billing_address:
             context = {
                 'order':order,
-                'DISPLAY_COUPON_FORM': False
+                'DISPLAY_COUPON_FORM': False,
+                'STRIPE_PUBLIC_KEY': STRIPE_PUBLIC_KEY,
             }
-
             userprofile = self.request.user.userprofile
             if userprofile.one_click_purchasing:
                 # fetch the users card list

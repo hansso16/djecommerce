@@ -11,28 +11,35 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import environ
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
-STATIC_DIR = os.path.join(BASE_DIR,'static')
+STATIC_DIR = os.path.join(BASE_DIR,env("STATIC", default="static"))
 MEDIA_DIR = os.path.join(BASE_DIR,'media')
 
 # Media files
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ei-0@gy&5v3k6#=*lvph5v8)*^x%w9tk^ohiwj$g*hnex#$uv0'
+SECRET_KEY = env("SECRET_KEY", default="unsafe-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG", default=True)
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = env('ALLOWE_HOSTS', default=['127.0.0.1'])
+print(ALLOWED_HOSTS)
 
 # Application definition
 
@@ -151,3 +158,6 @@ LOGIN_REDIRECT_URL = '/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+# Stripe Secret Key
+STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY", default='')
+STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY", default='')
