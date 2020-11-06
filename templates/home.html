@@ -43,7 +43,6 @@
 
     </nav> -->
 
-    <!--Section: Products v.3-->
     <section class="text-center mb-4">
 
       <div class="row wow fadeIn">
@@ -51,25 +50,17 @@
         {% for item in object_list %}
         <div class="col-lg-3 col-md-6 mb-4">
 
-          <!--Card-->
           <div class="card">
-
-            <!--Card image-->
             <div class="view overlay">
               <!-- <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" alt="">-->
-              <img src="{{ item.image.url}}"  class="card-img-top" alt="{{item.title}}" />
               <a href="{{ item.get_absolute_url }}">
+                <img src="{{ item.image.url}}"  class="card-img-top" alt="{{item.title}}" />
                 <div class="mask rgba-white-slight"></div>
-              </a>
+              </a> 
             </div>
-            <!--Card image-->
-
-            <!--Card content-->
+              
             <div class="card-body text-center">
-              <!--Category & Title-->
-              <a href="" class="grey-text">
-                <h5>{{item.get_category_display}}</h5>
-              </a>
+              <a href="{{ item.get_absolute_url }}" class="grey-text"><h5>{{item.get_category_display}}</h5></a>
               <h5>
                 <strong>
                   <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{item.title}}
@@ -77,31 +68,25 @@
                   </a>
                 </strong>
               </h5>
-
+                
               <h4 class="font-weight-bold blue-text">
                 <strong>$
                   {% if item.discount_price %}
-                    {{item.discount_price}}
+                  {{item.discount_price}}
                   {% else %}
-                    {{item.price}}
+                  {{item.price}}
                   {% endif%}
                 </strong>
               </h4>
-
             </div>
-            <!--Card content-->
-
           </div>
-          <!--Card-->
-
         </div>
         {% endfor %}
-      </div>
-
-    </section>
-    <!--Section: Products v.3-->
-
-    <!--Pagination-->
+        </div>
+        
+      </section>
+      
+      <!--Pagination-->
     {% if is_paginated %}
     <nav class="d-flex justify-content-center wow fadeIn">
       <ul class="pagination pg-blue">

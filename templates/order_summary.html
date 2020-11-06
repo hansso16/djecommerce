@@ -41,7 +41,7 @@
                 {% else %}
                     ${{order_item.get_total_item_price}}
                 {% endif %}
-                <a style="color:red;" href="{% url 'core:remove-from-cart' order_item.item.slug %}"><i class="fas fa-trash float-right"></i></i></a>
+                <a style="color:red;" href="{% url 'core:remove-from-cart' order_item.item.slug %}"><i class="fas fa-trash float-right"></i></a>
               </td>
             </tr>
             {% empty %}
@@ -50,7 +50,7 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    <a href="{% url 'core:home' %}" class="btn btn-primary float-right">Continue Shopping</a>
+                    <a href="{% url 'core:home' %}" class="btn btn-primary btn-md">Continue Shopping</a>
                 </td>
             </tr>
             {% endfor %}
@@ -67,8 +67,8 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    <a href="{% url 'core:checkout' %}" class="btn btn-warning float-right ml-2">Proceed to Checkout</a>
-                    <a href="{% url 'core:home' %}" class="btn btn-primary float-right">Continue Shopping</a>
+                  <a href="{% url 'core:home' %}" class="btn btn-md btn-primary mr-2">Continue Shopping</a>
+                  <a href="{% url 'core:checkout' %}" class="btn btn-md btn-warning">Proceed to Checkout</a>
                 </td>
             </tr>
             {% endif %}

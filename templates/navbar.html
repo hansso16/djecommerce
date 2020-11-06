@@ -1,62 +1,51 @@
 {% load cart_template_tags %}
-
-<!-- Navbar -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
     <div class="container">
 
-    <!-- Brand -->
     <a class="navbar-brand waves-effect" href="{% url 'core:home'%}"><strong class="blue-text">Django e-Commerce</strong></a>
 
-    <!-- Collapse -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Links -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
-        <!-- <li class="nav-item active">
-            <a class="nav-link waves-effect" href="{% url 'core:home'%}">Home
-                <span class="sr-only">(current)</span></a>
-        </li> -->
-        <!-- <li class="nav-item"><a class="nav-link waves-effect" href="{% url 'core:checkout'%}">Checkout</a></li> -->
+        {% if request.user.is_authenticated %}
+        <li class="nav-item"><span class="nav-link">Hi, {{request.user.username}}</span></li>
         {% if request.user.is_superuser %}
         <li class="nav-item"><a class="nav-link waves-effect" href="{% url 'admin:index'%}" target="_blank">Admin</a></li>
         {% endif %}
-        {% if request.user.is_authenticated %}
         <li class="nav-item"><a class="nav-link waves-effect" href="{% url 'core:request-refund'%}">Request Refund</a></li>
         {% endif %}
         <!-- <li class="nav-item"><a class="nav-link waves-effect" href="{% url 'core:stripe'%}">Stripe</a></li> -->
         </ul>
 
         <!-- Right -->
-        <ul class="navbar-nav nav-flex-icons">
+        <ul class="navbar-nav">
         {% if request.user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link waves-effect" href="{% url 'core:order-summary' %}">
-                <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
-                <i class="fas fa-shopping-cart"></i>
-                <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                    <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="clearfix d-none d-sm-inline-block"> Cart </span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link waves-effect" href="{% url 'account_logout'%}">
-                <span class="clearfix d-none d-sm-inline-block"> Logout </span>
-                </a>
+                <form method="post" action="{% url 'account_logout' %}" id="logout_form">
+                    {% csrf_token %}
+                    <a type="submit" class="nav-link waves-effect" id='logout_button' onclick="document.getElementById('logout_form').submit();">Logout</a>
+                </form>
+                <!-- <a class="nav-link waves-effect" href="{% url 'account_logout'%}">Logout</a> -->
             </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link waves-effect" href="{% url 'account_login'%}">
-                <span class="clearfix d-none d-sm-inline-block"> Login </span>
-                </a>
+                <a class="nav-link waves-effect" href="{% url 'account_login'%}">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link waves-effect" href="{% url 'account_signup'%}">
-                <span class="clearfix d-none d-sm-inline-block"> Signup </span>
-                </a>
+                <a class="nav-link waves-effect" href="{% url 'account_signup'%}">Signup</a>
             </li>
         {%endif%}
         </ul>
@@ -65,4 +54,3 @@
 
     </div>
 </nav>
-<!-- Navbar -->

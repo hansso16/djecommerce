@@ -6,7 +6,7 @@
 <script>
     // Set your publishable key: remember to change this to your live publishable key in production
     // See your keys here: https://dashboard.stripe.com/account/apikeys
-    var stripe = Stripe('pk_test_51HjHazBfXNIOP49r1WE9tONnHGGQa2U8lNQZsVBCXDdEa0DAoTlE7lVWKSDe4Dz68n9ogUM96gGEcXk2kakxx4vu00kc2huSdL');
+    var stripe = Stripe('{{STRIPE_PUBLIC_KEY}}');
     var elements = stripe.elements();
 </script>
 {% endblock extra_head %}
@@ -73,7 +73,7 @@
                   </div>
                 </form>
               </div>
-              <button class="btn btn-primary" id="checkout-button">Checkout</button>
+              <!-- <button class="btn btn-primary" id="checkout-button">Checkout</button> -->
 
           </div>
           <!--/.Card-->
@@ -156,29 +156,29 @@
 
 
   // var stripe = Stripe("pk_test_51HjHazBfXNIOP49r1WE9tONnHGGQa2U8lNQZsVBCXDdEa0DAoTlE7lVWKSDe4Dz68n9ogUM96gGEcXk2kakxx4vu00kc2huSdL");
-    var checkoutButton = document.getElementById("checkout-button");
-    checkoutButton.addEventListener("click", function () {
-      fetch("/create-session", {
-        method: "POST",
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (session) {
-          return stripe.redirectToCheckout({ sessionId: session.id });
-        })
-        .then(function (result) {
-          // If redirectToCheckout fails due to a browser or network
-          // error, you should display the localized error message to your
-          // customer using error.message.
-          if (result.error) {
-            alert(result.error.message);
-          }
-        })
-        .catch(function (error) {
-          console.error("Error:", error);
-        });
-    });
+    // var checkoutButton = document.getElementById("checkout-button");
+    // checkoutButton.addEventListener("click", function () {
+    //   fetch("/create-session", {
+    //     method: "POST",
+    //   })
+    //     .then(function (response) {
+    //       return response.json();
+    //     })
+    //     .then(function (session) {
+    //       return stripe.redirectToCheckout({ sessionId: session.id });
+    //     })
+    //     .then(function (result) {
+    //       // If redirectToCheckout fails due to a browser or network
+    //       // error, you should display the localized error message to your
+    //       // customer using error.message.
+    //       if (result.error) {
+    //         alert(result.error.message);
+    //       }
+    //     })
+    //     .catch(function (error) {
+    //       console.error("Error:", error);
+    //     });
+    // });
 
 
 </script>
