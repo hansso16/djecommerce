@@ -20,9 +20,10 @@ environ.Env.read_env()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
-STATIC_DIR = os.path.join(BASE_DIR,env("STATIC", default="static"))
+STATIC_DIR = os.path.join(BASE_DIR,'static')
 MEDIA_DIR = os.path.join(BASE_DIR,'media')
 
+STATIC_ROOT = os.path.join('staticfiles')
 # Media files
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
@@ -38,8 +39,8 @@ SECRET_KEY = env("SECRET_KEY", default="unsafe-secret-key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", default=True)
 
-ALLOWED_HOSTS = env('ALLOWE_HOSTS', default=['127.0.0.1'])
-print(ALLOWED_HOSTS)
+#ALLOWED_HOSTS = env('ALLOWED_HOSTS', default=[''])
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -139,7 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = env("STATIC")
 STATICFILES_DIRS = [STATIC_DIR,]
 
 # Authentication
