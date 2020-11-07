@@ -37,7 +37,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 SECRET_KEY = env("SECRET_KEY", default="unsafe-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG", default=True)
+DEBUG = env("DEBUG", default=False)
 
 #ALLOWED_HOSTS = env('ALLOWED_HOSTS', default=[''])
 ALLOWED_HOSTS = ['*']

@@ -384,10 +384,10 @@ class PaymentView(View):
 def stripe_error_response(error):
     data = {
         'error': {
-            'status':e.http_status,
-            'code':e.code,
-            'param':e.param,
-            'message':e.user_message
+            'status':error.http_status,
+            'code':error.code,
+            'param':error.param,
+            'message':error.user_message
         }
     }
     return JsonResponse(data)
