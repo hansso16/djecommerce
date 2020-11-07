@@ -1,2 +1,13 @@
 
 djecommerce/.env
+db.sqlite3
+djecommerce/__pycache__/settings.cpython-39.pyc
+db.sqlite3
+core/mixins/__pycache__/mixins.cpython-39.pyc
+core/migrations/__pycache__/0002_order_payment_intent.cpython-39.pyc
+core/migrations/0002_order_payment_intent.py
+core/__pycache__/views.cpython-39.pyc
+core/__pycache__/models.cpython-39.pyc
+core/__pycache__/forms.cpython-39.pyc
+djecommerce/__pycache__/settings.cpython-39.pyc
+core/__pycache__/forms.cpython-39.pyc
