@@ -108,6 +108,7 @@ class Order(models.Model):
     is_received = models.BooleanField(default=False)
     refund_requested = models.BooleanField(default=False)
     refund_granted = models.BooleanField(default=False)
+    payment_intent = models.CharField(max_length=100, blank=True, null=True)
 
     '''
     1. Order created - add to cart
