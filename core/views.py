@@ -231,7 +231,7 @@ class PaymentView(View):
         order = models.Order.objects.get(user=self.request.user, is_ordered=False)
         amount = int(order.get_total() * 100) #cents
         form = PaymentForm(self.request.POST)
-        userprofile = models.UserProfile.objects.get(user=self.request.user)
+        # userprofile = models.UserProfile.objects.get(user=self.request.user)
         if form.is_valid():
             payment_method_id = form.cleaned_data.get('payment_method_id')
             payment_intent_id = form.cleaned_data.get('payment_intent_id')
