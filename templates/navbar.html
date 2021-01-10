@@ -36,7 +36,9 @@
             <li class="nav-item">
                 <form method="post" action="{% url 'account_logout' %}" id="logout_form">
                     {% csrf_token %}
-                    <a type="submit" class="nav-link waves-effect" id='logout_button' onclick="document.getElementById('logout_form').submit();">Logout</a>
+                    <a class="nav-link waves-effect" id='logout_button' 
+                        onclick="document.getElementById('logout_form').submit();">Logout</a>
+                        
                 </form>
                 <!-- <a class="nav-link waves-effect" href="{% url 'account_logout'%}">Logout</a> -->
             </li>
